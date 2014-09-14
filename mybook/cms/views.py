@@ -27,6 +27,7 @@ def book_edit(request, book_id=None):
                               dict(form=form, book_id=book_id),
                               context_instance=RequestContext(request))
 
-def book_del(request):
-    pass
-
+def book_del(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    book.delete()
+    return redirect('cms:book_list')
